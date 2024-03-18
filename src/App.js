@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { uid } from 'uid';
 
 const todoss = [
@@ -30,9 +30,18 @@ const todoss = [
 
 function App() {
   const [todos, setTodos] = useState(todoss) 
-  const addTodo = (newTodo)=>{
-    setTodos(...todos, newTodo)
+
+  const addTodo = async (newTodo) => {
+    await setTodos((prevTodos) => {
+      const newTodos = [...prevTodos, newTodo];
+      return newTodos; 
+    });
   }
+  
+
+  useEffect(()=>{
+    setTodos(todos);
+  }, [todos])
 
   return (
     <div>
@@ -44,21 +53,3 @@ function App() {
 
 export default App;
 
-// return (
-//   <div className="App">
-//     <header className="App-header">
-//       <img src={logo} className="App-logo" alt="logo" />
-//       <p>
-//         Edit <code>src/App.js</code> and save to reload.
-//       </p>
-//       <a
-//         className="App-link"
-//         href="https://reactjs.org"
-//         target="_blank"
-//         rel="noopener noreferrer"
-//       >
-//         Learn React
-//       </a>
-//     </header>
-//   </div>
-// )

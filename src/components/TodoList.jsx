@@ -6,7 +6,9 @@ import { uid } from 'uid'
 export const TodoList = (props) => {
     const [todoList, setTodoList] =  useState(props.todoList? props.todoList: [])
 
-    useEffect(()=>setTodoList(todoList), todoList)
+    useEffect(()=>{
+        setTodoList(props.todoList)
+    }, [props])
 
     return (
 
