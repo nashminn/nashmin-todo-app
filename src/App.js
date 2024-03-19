@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
 import { useEffect, useState } from 'react';
