@@ -32,10 +32,16 @@ function App() {
   const [todos, setTodos] = useState(todoss) 
 
   const addTodo = async (newTodo) => {
-    await setTodos((prevTodos) => {
-      const newTodos = [...prevTodos, newTodo];
+    await setTodos((oldTodos) => {
+      const newTodos = [...oldTodos, newTodo];
       return newTodos; 
     });
+  }
+
+  const deleteTodo = async (deleteId) => {
+    await setTodos((todos)=> {
+      return todos.filter(todo=>todo.id !== deleteId)
+    })
   }
   
 
@@ -45,8 +51,8 @@ function App() {
 
   return (
     <div>
-      <TodoForm addTodo={addTodo}/>
-      <TodoList todoList={todos} setTodos={setTodos}/>
+      <TodoForm addTodo={addTodo} />
+      <TodoList todoList={todos} deleteTodo={deleteTodo} setTodos={setTodos}/>
     </div>
   );
 }
