@@ -4,7 +4,7 @@ export const Select = ({ label, fieldName, defaultValue, options, onChange, rese
   const select = useRef(null)
   useEffect(() => {
     if (select && select.current) {
-      console.log(select.current.value)
+      // console.log(select.current.value)
       select.current.value = defaultValue
     }
   }, [resetCounter])

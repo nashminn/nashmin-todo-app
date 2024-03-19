@@ -3,33 +3,37 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Button, Checkbox, IconButton } from '@mui/material'
 import React, { useState } from 'react'
+import { Container } from 'react-bootstrap'
+import '../css/todoitem.css'
 
 
 
-export const TodoItem = ({id, title, details, due, deleteTodo, editTodo, todo}) => {
-    // const uid = uid()
+export const TodoItem = ({deleteTodo, editTodo, todo}) => {
+    
 
   return (
-    <div>
-        <Checkbox />
+    <Container className="container-with-visible-border" >
+        <Checkbox id={todo.id+"check"}/>
         <>
             <>
-                {title}
+                {todo.title}
                 <IconButton aria-label="edit" onClick={()=>{
+                        console.log("edit button clicked")
                         editTodo(todo)
                     }}>
                     <EditIcon />
                 </IconButton>
                 
-                <IconButton aria-label="delete" onClick={()=>deleteTodo(id)}><DeleteIcon /></IconButton>
+                <IconButton aria-label="delete" onClick={()=>deleteTodo(todo.id)}><DeleteIcon /></IconButton>
             </>
             <br/>
             <>
-                {details}
+                {todo.details}<br/>
+                {todo.priority}
             </>
             <br/>
-            Due date: {due}
+            Due date: {todo.due}
         </>
-    </div>
+    </Container>
   )
 }
