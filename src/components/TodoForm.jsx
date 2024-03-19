@@ -14,18 +14,18 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
   const [dueDate, setDueDate] = useState((new Date()).toISOString());
 
   useEffect(() => {
-    console.log("show form change triggered")
-    console.log("show form: "+ showForm)
+    // console.log("show form change triggered")
+    // console.log("show form: "+ showForm)
       if(!showForm) {
-        console.log("clearing populated data" + Object.keys(populateData).length)
+        // console.log("clearing populated data" + Object.keys(populateData).length)
         setPopulateData({})
-        console.log("did it clear? " + Object.keys(populateData).length)
+        // console.log("did it clear? " + Object.keys(populateData).length)
       }
   }, [showForm])
 
   useEffect(() => {
     if (Object.keys(populateData).length !== 0) {
-      console.log("populateq data edit triggered");
+      // console.log("populateq data edit triggered");
       
       setShowForm(true);
       setTitle(populateData.title);
@@ -33,7 +33,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
       setPriority(populateData.priority);
       setDueDate(populateData.due);
 
-      console.log(populateData + " " + Object.keys(populateData).length + " " + Object.keys(populateData))
+      // console.log(populateData + " " + Object.keys(populateData).length + " " + Object.keys(populateData))
     }
   }, [resetFlag]);
 
@@ -46,7 +46,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
   }
 
   const onSave = () => {
-    console.log("in onsave function populateData.length" + Object.keys(populateData).length)
+    // console.log("in onsave function populateData.length" + Object.keys(populateData).length)
     if (Object.keys(populateData).length === 0) {
       addTodo({
         id: uid(),
@@ -66,8 +66,8 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
         created: populateData.created,
         updated: (new Date()).toISOString(),
       };
-      console.log(updatedTodo)
-      console.log(populateData.id)
+      // console.log(updatedTodo)
+      // console.log(populateData.id)
       deleteTodo(populateData.id);
       addTodo(updatedTodo);
     }
@@ -79,7 +79,10 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
     <>
       <Button onClick={() => setShowForm(true)}>Add Todo</Button>
 
-      <Modal show={showForm} onHide={() => { console.log("ON HIDE TRIGGERED"); clearData(); setShowForm(false) }}>
+      <Modal show={showForm} onHide={() => { 
+          // console.log("ON HIDE TRIGGERED"); 
+          clearData(); setShowForm(false) 
+        }}>
         <Modal.Header>
           <Modal.Title>{Object.keys(populateData).length === 0 ? 'Add Todo' : 'Edit Todo'}</Modal.Title>
         </Modal.Header>

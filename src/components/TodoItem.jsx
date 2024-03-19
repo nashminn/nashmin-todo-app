@@ -13,12 +13,12 @@ export const TodoItem = ({deleteTodo, editTodo, todo}) => {
 
   return (
     <Container className="container-with-visible-border" >
-        <Checkbox id={todo.id+"check"}/>
+        <Checkbox id={todo.id} onChange={(e)=>{ todo.status=1; console.log(todo) }}/>
         <>
             <>
                 {todo.title}
                 <IconButton aria-label="edit" onClick={()=>{
-                        console.log("edit button clicked")
+                        // console.log("edit button clicked")
                         editTodo(todo)
                     }}>
                     <EditIcon />

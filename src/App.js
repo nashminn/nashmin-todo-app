@@ -6,6 +6,7 @@ import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
 import { useEffect, useState } from 'react';
 import { uid } from 'uid';
+import { Button } from 'react-bootstrap';
 
 const todoss = [
   {
@@ -46,7 +47,7 @@ function App() {
   }
 
   const editTodo = async (dataToEdit) => {
-    console.log("in app.js datatoedit priority: " +  dataToEdit.priority + "what")
+    // console.log("in app.js datatoedit priority: " +  dataToEdit.priority + "what")
     setPopulateData(dataToEdit)
     setResetFlag(!resetFlag)
   }
@@ -59,8 +60,14 @@ function App() {
 
   return (
     <div>
-      <TodoForm className="todo-form-main" addTodo={addTodo} deleteTodo={deleteTodo} populateData={populateData} setPopulateData={setPopulateData} resetFlag={resetFlag}/>
-      <TodoList className="todo-list-main" todoList={todos} deleteTodo={deleteTodo} setTodos={setTodos} editTodo={editTodo}/>
+      <TodoForm className="todo-form-main" addTodo={addTodo} 
+          deleteTodo={deleteTodo} populateData={populateData} 
+          setPopulateData={setPopulateData} resetFlag={resetFlag}/>
+      <Button >Filter</Button> 
+       {/* filter by priority, completion, duedate */}
+
+      <TodoList className="todo-list-main" todoList={todos} 
+          deleteTodo={deleteTodo} setTodos={setTodos} editTodo={editTodo}/>
     </div>
   );
 }
