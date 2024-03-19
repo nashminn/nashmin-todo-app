@@ -30,29 +30,40 @@ const todoss = [
 
 function App() {
   const [todos, setTodos] = useState(todoss) 
+  const [populateData, setPopulateData] = useState({})
+
+  const clearPopulateData = () => {
+    setPopulateData({})
+  }
 
   const addTodo = async (newTodo) => {
-    await setTodos((oldTodos) => {
+    setTodos((oldTodos) => {
       const newTodos = [...oldTodos, newTodo];
+      clearPopulateData()
       return newTodos; 
     });
   }
 
   const deleteTodo = async (deleteId) => {
-    await setTodos((todos)=> {
+    setTodos((todos)=> {
       return todos.filter(todo=>todo.id !== deleteId)
     })
+  }
+
+  const editTodo = async (dataToEdit) => {
+    console.log("in app.js edit todo")
+    setPopulateData(dataToEdit)
   }
   
 
   useEffect(()=>{
     setTodos(todos);
-  }, [todos])
+  }, [todos, populateData])
 
   return (
     <div>
-      <TodoForm addTodo={addTodo} />
-      <TodoList todoList={todos} deleteTodo={deleteTodo} setTodos={setTodos}/>
+      <TodoForm addTodo={addTodo} deleteTodo={deleteTodo} populateData={populateData}/>
+      <TodoList todoList={todos} deleteTodo={deleteTodo} setTodos={setTodos} editTodo={editTodo}/>
     </div>
   );
 }

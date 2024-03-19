@@ -14,7 +14,9 @@ export const TodoList = (props) => {
 
       <List> 
           {todoList.map((todo)=>{
-              return <ListItem id={todo.id}><TodoItem id={todo.id} title={todo.title} details={todo.details} due={todo.due} deleteTodo={props.deleteTodo}/></ListItem>
+              return <ListItem id={todo.id}><TodoItem id={todo.id} todo={todo}
+                        title={todo.title} details={todo.details} due={todo.due} 
+                        deleteTodo={props.deleteTodo} editTodo={props.editTodo}/></ListItem>
           })}
           
       </List>

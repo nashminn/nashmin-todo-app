@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 
 
 
-export const TodoItem = ({id, title, details, due, deleteTodo}) => {
+export const TodoItem = ({id, title, details, due, deleteTodo, editTodo, todo}) => {
     // const uid = uid()
 
   return (
@@ -15,7 +15,9 @@ export const TodoItem = ({id, title, details, due, deleteTodo}) => {
         <>
             <>
                 {title}
-                <IconButton aria-label="edit" onClick={()=>{console.log("edit todo")}}>
+                <IconButton aria-label="edit" onClick={()=>{
+                        editTodo(todo)
+                    }}>
                     <EditIcon />
                 </IconButton>
                 
