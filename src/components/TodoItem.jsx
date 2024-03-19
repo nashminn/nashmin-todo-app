@@ -3,19 +3,25 @@ import EditIcon from '@mui/icons-material/Edit'
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Button, Checkbox, IconButton } from '@mui/material'
 import React, { useState } from 'react'
+import { Container } from 'react-bootstrap'
+import '../css/todoitem.css'
 
 
 
 export const TodoItem = ({id, title, details, due, deleteTodo, editTodo, todo}) => {
-    // const uid = uid()
+    // const containerStyle = {
+    //     border: '1px solid #ced4da', // Border color
+    //     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' // Shadow effect
+    //   };
 
   return (
-    <div>
+    <Container className="container-with-visible-border" >
         <Checkbox />
         <>
             <>
                 {title}
                 <IconButton aria-label="edit" onClick={()=>{
+                        console.log("to do priority" + todo.priority)
                         editTodo(todo)
                     }}>
                     <EditIcon />
@@ -30,6 +36,6 @@ export const TodoItem = ({id, title, details, due, deleteTodo, editTodo, todo}) 
             <br/>
             Due date: {due}
         </>
-    </div>
+    </Container>
   )
 }

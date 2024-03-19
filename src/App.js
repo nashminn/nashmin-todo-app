@@ -53,7 +53,7 @@ function App() {
   }
 
   const editTodo = async (dataToEdit) => {
-    console.log("in app.js edit todo")
+    console.log("in app.js datatoedit priority: " +  dataToEdit.priority + "what")
     setPopulateData(dataToEdit)
   }
   
