@@ -6,6 +6,7 @@ import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
 import { useEffect, useState } from 'react';
 import { uid } from 'uid';
+import { Button } from 'react-bootstrap';
 
 const todoss = [
   {
@@ -23,25 +24,18 @@ const todoss = [
     title: "title 3",
     details: "oaisdjf aoisdfj oaisdfj"
   },
-  {
-    id: uid(),
-    title: "title 4",
-    details: "oaisdjf aoisdfj oaisdfj"
-  },
 ]
 
 function App() {
   const [todos, setTodos] = useState(todoss) 
   const [populateData, setPopulateData] = useState({})
+  const [resetFlag, setResetFlag] = useState(false)
 
-  const clearPopulateData = () => {
-    setPopulateData({})
-  }
 
   const addTodo = async (newTodo) => {
     setTodos((oldTodos) => {
       const newTodos = [...oldTodos, newTodo];
-      clearPopulateData()
+      setPopulateData({})
       return newTodos; 
     });
   }
@@ -53,19 +47,27 @@ function App() {
   }
 
   const editTodo = async (dataToEdit) => {
-    console.log("in app.js datatoedit priority: " +  dataToEdit.priority + "what")
+    // console.log("in app.js datatoedit priority: " +  dataToEdit.priority + "what")
     setPopulateData(dataToEdit)
+    setResetFlag(!resetFlag)
   }
   
 
   useEffect(()=>{
-    setTodos(todos);
-  }, [todos, populateData])
+    // setPopulateData({})
+  }, [resetFlag])
+
 
   return (
     <div>
-      <TodoForm addTodo={addTodo} deleteTodo={deleteTodo} populateData={populateData}/>
-      <TodoList todoList={todos} deleteTodo={deleteTodo} setTodos={setTodos} editTodo={editTodo}/>
+      <TodoForm className="todo-form-main" addTodo={addTodo} 
+          deleteTodo={deleteTodo} populateData={populateData} 
+          setPopulateData={setPopulateData} resetFlag={resetFlag}/>
+      <Button >Filter</Button> 
+       {/* filter by priority, completion, duedate */}
+
+      <TodoList className="todo-list-main" todoList={todos} 
+          deleteTodo={deleteTodo} setTodos={setTodos} editTodo={editTodo}/>
     </div>
   );
 }

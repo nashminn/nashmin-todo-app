@@ -8,33 +8,31 @@ import '../css/todoitem.css'
 
 
 
-export const TodoItem = ({id, title, details, due, deleteTodo, editTodo, todo}) => {
-    // const containerStyle = {
-    //     border: '1px solid #ced4da', // Border color
-    //     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' // Shadow effect
-    //   };
+export const TodoItem = ({deleteTodo, editTodo, todo}) => {
+    
 
   return (
     <Container className="container-with-visible-border" >
-        <Checkbox />
+        <Checkbox id={todo.id} onChange={(e)=>{ todo.status=1; console.log(todo) }}/>
         <>
             <>
-                {title}
+                {todo.title}
                 <IconButton aria-label="edit" onClick={()=>{
-                        console.log("to do priority" + todo.priority)
+                        // console.log("edit button clicked")
                         editTodo(todo)
                     }}>
                     <EditIcon />
                 </IconButton>
                 
-                <IconButton aria-label="delete" onClick={()=>deleteTodo(id)}><DeleteIcon /></IconButton>
+                <IconButton aria-label="delete" onClick={()=>deleteTodo(todo.id)}><DeleteIcon /></IconButton>
             </>
             <br/>
             <>
-                {details}
+                {todo.details}<br/>
+                {todo.priority}
             </>
             <br/>
-            Due date: {due}
+            Due date: {todo.due}
         </>
     </Container>
   )

@@ -6,6 +6,11 @@ import { uid } from 'uid'
 export const TodoList = (props) => {
     const [todoList, setTodoList] =  useState(props.todoList? props.todoList: [])
 
+// sort by title, priority, description, status
+// filter by status, priority, dueDate
+// search by title, details
+
+
     useEffect(()=>{
         setTodoList(props.todoList)
     }, [props])
@@ -14,8 +19,7 @@ export const TodoList = (props) => {
 
       <List> 
           {todoList.map((todo)=>{
-              return <ListItem id={todo.id}><TodoItem id={todo.id} todo={todo}
-                        title={todo.title} details={todo.details} due={todo.due} 
+              return <ListItem key={todo.id}><TodoItem todo={todo}
                         deleteTodo={props.deleteTodo} editTodo={props.editTodo}/></ListItem>
           })}
           
