@@ -34,7 +34,7 @@ function App() {
 
   const addTodo = async (newTodo) => {
     setTodos((oldTodos) => {
-      const newTodos = [...oldTodos, newTodo];
+      const newTodos = [newTodo, ...oldTodos];
       setPopulateData({})
       return newTodos; 
     });
