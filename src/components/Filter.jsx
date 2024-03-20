@@ -3,6 +3,7 @@ import { Checkbox, FormControl, FormControlLabel, IconButton, Radio, RadioGroup 
 import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { Filter1, FilterAltOutlined } from '@mui/icons-material';
 
 export const Filter = ({sendFilter}) => {
   const [showFilter, setShowFilter] = useState(false);
@@ -22,6 +23,7 @@ export const Filter = ({sendFilter}) => {
     setDueOrder(0);
     setUpdateOrder(0);
     setStatusRadioValue(null)
+    setFilter({})
   }
 
   const populateData = 123;
@@ -60,7 +62,9 @@ export const Filter = ({sendFilter}) => {
   
   return (
     <>
-      <Button onClick={() => setShowFilter(true)}>Filter</Button>
+      <IconButton onClick={() => setShowFilter(true)}>
+        <FilterAltOutlined fontSize='large' />
+      </IconButton>
 
       <Modal show={showFilter} onHide={() => { 
           // console.log("ON HIDE TRIGGERED"); 

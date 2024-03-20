@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Modal } from 'react-bootstrap';
+import { Button, Container, Modal, Row } from 'react-bootstrap';
 
 import DatePicker from 'react-datepicker';
 import { uid } from 'uid';
 import { Select } from './Select';
 // import '../css/TodoForm.css'
 import 'react-datepicker/dist/react-datepicker.css';
+import { IconButton } from '@mui/material';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopulateData }) => {
   const [showForm, setShowForm] = useState(false);
@@ -66,6 +68,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
         details,
         priority,
         due: dueDate,
+        complete: populateData.complete,
         created: populateData.created,
         updated: (new Date()).toISOString(),
       };
@@ -79,8 +82,8 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
   };
 
   return (
-    <>
-      <Button onClick={() => setShowForm(true)}>Add Todo</Button>
+    <Container>
+      <Row className='justify-content-right'>      
 
       <Modal show={showForm} onHide={() => { 
           // console.log("ON HIDE TRIGGERED"); 
@@ -119,6 +122,8 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
           <Button variant="primary" onClick={onSave}>Save</Button>
         </Modal.Footer>
       </Modal>
-    </>
+      <IconButton className='justify-content-right' onClick={() => setShowForm(true)}><AddCircleOutlineIcon fontSize='large'/></IconButton>
+      </Row>
+    </Container>
   );
 };

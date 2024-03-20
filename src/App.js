@@ -8,26 +8,33 @@ import { TodoForm } from './components/TodoForm';
 import { useEffect, useState } from 'react';
 import { uid } from 'uid';
 import { Filter } from './components/Filter';
-import { Button } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
+import { AppliedFilter } from './components/AppliedFilter';
 
 const todoss = [
   {
     id: uid(),
     title: "title 1",
     complete: 0,
-    details: "oaisdjf aoisdfj oaisdfj"
+    priority: "Low",
+    details: "oaisdjf aoisdfj oaisdfj",
+    due: new Date().toISOString()
   },
   {
     id: uid(),
     title: "title 2",
     complete: 0,
-    details: "oaisdjf aoisdfj oaisdfj"
+    priority: "Medium",
+    details: "oaisdjf aoisdfj oaisdfj",
+    due: new Date().toISOString()
   },
   {
     id: uid(),
     title: "title 3",
     complete: 0,
-    details: "oaisdjf aoisdfj oaisdfj"
+    priority: "High",
+    details: "oaisdjf aoisdfj oaisdfj",
+    due: new Date().toISOString()
   },
 ]
 
@@ -41,8 +48,16 @@ function App() {
   const [resetFlag, setResetFlag] = useState(false)
   const [filter, setFilter] = useState({})
 
+  useEffect(()=>{
+
+  }, [resetFlag])
 
   useEffect(()=>{
+    if(Object.keys(filter).length === 0) {
+      setAlteredFlag(false)
+      setAlteredTodos([])
+      setResetFlag(!resetFlag)
+    }
     actualFilter()
   }, [filter])
 
@@ -95,33 +110,44 @@ function App() {
   return (
     <div>
       
-      <TodoForm className="todo-form-main" addTodo={addTodo} 
-          deleteTodo={deleteTodo} populateData={populateData} 
-          setPopulateData={setPopulateData} resetFlag={resetFlag}/>
+      <Container row className='row justify-content-center'>
+      <h2 align="center" >Todo List</h2>
+        <Row className="justify-content-center">
+          <Col md={6}>
+            <TodoForm className="todo-form-main" addTodo={addTodo} 
+                deleteTodo={deleteTodo} populateData={populateData} 
+                setPopulateData={setPopulateData} resetFlag={resetFlag}/>
+          </Col>
 
+          <Col md={6} >
+            <Filter className='row justify-content-center' sendFilter={setFilter} /> 
+          </Col>
+        
 
-      <Filter sendFilter={setFilter} /> 
-      <Button onClick={()=>{
-        setFilter({})
-        setAlteredFlag(false)
-        setAlteredTodos([])
-        setResetFlag(!resetFlag)
-      }}>Clear Filter</Button> 
+        </Row>
+      </Container>
+
        
-       {/* filter by priority, completion, duedate */}
+      <AppliedFilter filter={filter} modifyFilter={setFilter}/>
 
       {!alteredFlag &&   
       <TodoList className="todo-list-main" todoList={todos} 
           deleteTodo={deleteTodo} setTodos={setTodos} editTodo={editTodo}/>} 
       
       {alteredFlag &&
-      <div>
         <TodoList className="todo-list-main" todoList={alteredTodos} 
           deleteTodo={deleteTodo} setTodos={setTodos} editTodo={editTodo}/>
-      </div>}
+      }
+
     </div>
   );
 }
 
 export default App;
 
+{/* <Button onClick={()=>{
+          setFilter({})
+          setAlteredFlag(false)
+          setAlteredTodos([])
+          setResetFlag(!resetFlag)
+        }}>Clear Filter</Button>  */}
