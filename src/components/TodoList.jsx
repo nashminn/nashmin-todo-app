@@ -12,8 +12,12 @@ export const TodoList = (props) => {
 
 
     useEffect(()=>{
+        refreshList()
+    }, [props.todoList])
+
+    const refreshList = ()=>{
         setTodoList(props.todoList)
-    }, [props])
+    }
 
     return (
 

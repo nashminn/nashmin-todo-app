@@ -1,6 +1,6 @@
 
 import { Checkbox, FormControl, FormControlLabel, IconButton, Radio, RadioGroup } from '@mui/material';
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { Button, Modal } from 'react-bootstrap';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 

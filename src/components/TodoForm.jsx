@@ -19,24 +19,25 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
     // console.log("show form: "+ showForm)
       if(!showForm) {
         // console.log("clearing populated data" + Object.keys(populateData).length)
-        setPopulateData({})
+        clearData()
         // console.log("did it clear? " + Object.keys(populateData).length)
       }
   }, [showForm])
 
   useEffect(() => {
     if (Object.keys(populateData).length !== 0) {
-      // console.log("populateq data edit triggered");
       
-      setShowForm(true);
-      setTitle(populateData.title);
-      setDetails(populateData.details);
-      setPriority(populateData.priority);
-      setDueDate(populateData.due);
-
-      // console.log(populateData + " " + Object.keys(populateData).length + " " + Object.keys(populateData))
+      populateUI(populateData)
     }
   }, [resetFlag]);
+
+  const populateUI = (populateData)=> {
+    setShowForm(true);
+    setTitle(populateData.title);
+    setDetails(populateData.details);
+    setPriority(populateData.priority);
+    setDueDate(populateData.due);
+  }
 
   const clearData = () => {
     setTitle("")
@@ -67,7 +68,6 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
         due: dueDate,
         created: populateData.created,
         updated: (new Date()).toISOString(),
-        ...populateData
       };
       // console.log(updatedTodo)
       // console.log(populateData.id)
@@ -101,7 +101,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
             </div>
             <div className="mb-3">
               <label htmlFor="priority" className="form-label">Priority</label>
-              <Select fieldName="priority" name="priority" value={priority} onChange={(e) => setPriority(e.target.value)} options={['High', 'Medium', 'Low']} />
+              <Select fieldName="priority" name="priority" value={priority} defaultValue={priority} onChange={(e) => setPriority(e.target.value)} options={['High', 'Medium', 'Low']} />
             </div>
             <div className="mb-3">
               <label htmlFor="dueDate" className="form-label">Due Date</label>

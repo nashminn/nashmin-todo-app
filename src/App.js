@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import useLocalStorage  from 'react-use-localstorage';
 import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
 import { useEffect, useState } from 'react';
@@ -31,6 +32,8 @@ const todoss = [
 ]
 
 function App() {
+  // const [todoList, setTodoList] = useLocalStorage('todoList', [])
+
   const [todos, setTodos] = useState(todoss) 
   const [alteredTodos, setAlteredTodos] = useState([])
   const [alteredFlag, setAlteredFlag] = useState(false)
@@ -40,9 +43,10 @@ function App() {
 
 
   useEffect(()=>{
-    console.log("what about here")
-    console.log(todos)
-    console.log(filter)
+    actualFilter()
+  }, [filter])
+
+  const actualFilter = ()=>{
     let altList = [...todos]
     if(Object.keys(filter).length > 0) {
       if(filter.complete !== undefined) {
@@ -64,9 +68,7 @@ function App() {
       setAlteredFlag(true)
       setResetFlag(!resetFlag)
     }
-  }, [filter])
-
-
+  }
 
 
   const addTodo = async (newTodo) => {
@@ -88,11 +90,6 @@ function App() {
     setPopulateData(dataToEdit)
     setResetFlag(!resetFlag)
   }
-  
-
-  useEffect(()=>{
-    // setPopulateData({})
-  }, [resetFlag])
 
 
   return (
@@ -101,6 +98,8 @@ function App() {
       <TodoForm className="todo-form-main" addTodo={addTodo} 
           deleteTodo={deleteTodo} populateData={populateData} 
           setPopulateData={setPopulateData} resetFlag={resetFlag}/>
+
+
       <Filter sendFilter={setFilter} /> 
       <Button onClick={()=>{
         setFilter({})
