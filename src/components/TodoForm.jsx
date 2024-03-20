@@ -49,12 +49,17 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
     setPopulateData({})
   }
 
-  const onSave = () => {
+  const onSave = async () => {
     // console.log("in onsave function populateData.length" + Object.keys(populateData).length)
+    let localTitle = title
+    if(localTitle.length === 0) {
+      // console.log("no title")
+      localTitle = "Untitled todo"
+    }
     if (Object.keys(populateData).length === 0) {
       addTodo({
         id: uid(),
-        title,
+        title: localTitle,
         details,
         priority,
         complete: 0,
@@ -64,7 +69,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
     } else {
       const updatedTodo = {
         id: populateData.id,
-        title,
+        title: localTitle,
         details,
         priority,
         due: dueDate,

@@ -77,6 +77,26 @@ function App() {
         console.log("filtered based on priority: ")
         console.log(altList)
       }
+
+      if(filter.due !== undefined) {
+        if(filter.due === 1) {
+          // ascending
+          altList = altList.sort((a, b) => new Date(a.due) - new Date(b.due))
+        } else {
+          // descending
+          altList = altList.sort((a, b) => new Date(b.due) - new Date(a.due))
+        }
+      }
+
+      if(filter.created !== undefined) {
+        if(filter.created === 1) {
+          // ascending
+          altList = altList.sort((a, b)=> new Date(a.created) - new Date(b.created))
+        } else {
+          // descending
+          altList = altList.sort((a, b) => new Date(b.created) - new Date(a.created))
+        }
+      }
       
       setAlteredTodos(altList)
       console.log(altList)

@@ -26,6 +26,19 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
         }
     }
 
+    const removeKey = (keyToRemove)=>{
+        const newFilter = Object.keys(filter).reduce((acc, key)=>{
+            if(key !== keyToRemove) {
+                // console.log(key)
+                // console.log("acc " + acc)
+                // console.log(filter[key])
+                acc[key] = filter[key]
+            }
+            return acc
+        }, {})
+        modifyFilter(newFilter)
+    }
+
     const chipsList = ()=>{
         let str = []
         if(Object.keys(filter).length === 0) return <></> 
@@ -50,6 +63,12 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
                     })
                     // str = [...str, "Priority: " + filter['priority']]
                     break;
+                case 'due':
+                    if(filter.due === 1) {
+                        str = [...str, "Due date: Ascending"]
+                    } else {
+                        str = [...str, "Due date: Descending"]
+                    }
                 default:
                     break;
             }
@@ -62,17 +81,7 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
                     case 'Complete':
                         
                     case 'Incomplete':
-                        const keyToRemove = 'complete'
-                        const newFilter = Object.keys(filter).reduce((acc, key)=>{
-                            if(key !== keyToRemove) {
-                                // console.log(key)
-                                // console.log("acc " + acc)
-                                // console.log(filter[key])
-                                acc[key] = filter[key]
-                            }
-                            return acc
-                        }, {})
-                        modifyFilter(newFilter)
+                        removeKey('complete')
                         break;
                     case 'Priority: Low':
                         eliminatePriority('Low')
@@ -83,7 +92,15 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
                     case 'Priority: High':
                         eliminatePriority('High')
                         break
-
+                    
+                    case 'Due date: Ascending':
+                    case 'Due date: Descending':
+                        removeKey('due')
+                        break;
+                    
+                    case 'Creation date: Ascending':
+                    case 'Creation date: Descending':
+                        removeKey('created')
                     default:
                         break;
                 }

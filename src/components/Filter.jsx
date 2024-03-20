@@ -59,6 +59,36 @@ export const Filter = ({sendFilter}) => {
       }))
     }
   }
+
+  const onDueOrderClick = (e) => {
+    let dict = {}
+    switch(e.target.value) {
+      case "ascending":
+        dict = {'due': 1, ...filter}
+        break;
+      case "descending":
+        dict = {'due': -1, ...filter}
+        break;
+      default:
+        break;
+    }
+    setFilter(dict)
+  }
+
+  const onCreatedOrderClick = (e) => {
+    let dict = {}
+    switch(e.target.value) {
+      case "ascending":
+        dict = {'created': 1, ...filter}
+        break;
+      case "descending":
+        dict = {'created': -1, ...filter}
+        break;
+      default:
+        break;
+    }
+    setFilter(dict)
+  }
   
   return (
     <>
@@ -93,14 +123,23 @@ export const Filter = ({sendFilter}) => {
 
           Sort by:
           <div>
-            Creation date: 
-            
+            Due date: 
             <FormControl component="fieldset">
-            <RadioGroup  onChange={onStatusRadioClick}>
+              <RadioGroup  onChange={onDueOrderClick}>
                 <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
                 <FormControlLabel value="descending" control={<Radio />} label="Descending" />
-            </RadioGroup>
-        </FormControl>
+              </RadioGroup>
+            </FormControl>
+          </div>
+          
+          <div>
+            Creation date: 
+            <FormControl component="fieldset">
+              <RadioGroup  onChange={onCreatedOrderClick}>
+                <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
+                <FormControlLabel value="descending" control={<Radio />} label="Descending" />
+              </RadioGroup>
+            </FormControl>
           </div>
           
         </Modal.Body>
