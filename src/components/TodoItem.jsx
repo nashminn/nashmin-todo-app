@@ -10,7 +10,7 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
     const [resetFlag, setResetFlag] = useState(false)
 
     return (
-        <Container className="container-with-visible-border">
+        <Container className={`container-with-visible-border ${todo.complete === 1 ? 'todo-checked' : ''}`}>
             <Row className="align-items-center">
                 <Col xs={1}>
                     <Checkbox
@@ -31,8 +31,8 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
                 </Col>
             </Row>
 
-            <Row styles={{marginBottom: '10px', marginTop: '10px', marginLeft: '10px'}}>
-                <Col>{todo.details}</Col>
+            <Row styles={{marginBottom: '10px', marginTop: '10px', marginLeft: '10px' , marginBottom:'15px'}}>
+                <Col >{todo.details}</Col>
             </Row>
 
             <Row>

@@ -4,4 +4,7 @@
     /* border-radius: 5pc;
     padding: 2cap; */
 }
-  
+
+.todo-checked {
+    background-color: #e0e0e0; /* Change this to the desired color */
+}
