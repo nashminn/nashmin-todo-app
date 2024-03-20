@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, Modal } from 'react-bootstrap';
 
 import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
 import { uid } from 'uid';
 import { Select } from './Select';
+// import '../css/TodoForm.css'
+import 'react-datepicker/dist/react-datepicker.css';
 
 export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopulateData }) => {
   const [showForm, setShowForm] = useState(false);
@@ -53,6 +54,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
         title,
         details,
         priority,
+        complete: 0,
         due: dueDate,
         created: (new Date()).toISOString(),
       });
@@ -65,6 +67,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
         due: dueDate,
         created: populateData.created,
         updated: (new Date()).toISOString(),
+        ...populateData
       };
       // console.log(updatedTodo)
       // console.log(populateData.id)
@@ -98,7 +101,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
             </div>
             <div className="mb-3">
               <label htmlFor="priority" className="form-label">Priority</label>
-              <Select fieldName="priority" name="priority" value={priority} onChange={(e) => setPriority(e.target.value)} options={['High', 'Moderate', 'Low']} />
+              <Select fieldName="priority" name="priority" value={priority} onChange={(e) => setPriority(e.target.value)} options={['High', 'Medium', 'Low']} />
             </div>
             <div className="mb-3">
               <label htmlFor="dueDate" className="form-label">Due Date</label>

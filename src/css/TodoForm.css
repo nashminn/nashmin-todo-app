@@ -1,0 +1,25 @@
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+ 
+  
+.modal-dialog {
+    margin: 0;
+    width: fit-content;
+    animation: none !important; /* Disable any animation */
+}
+
+.modal-content {
+    margin: auto;
+    transform: none !important; /* Disable any default transform */
+}
+
+.center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
