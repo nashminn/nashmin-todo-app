@@ -10,6 +10,8 @@ import { uid } from 'uid';
 import { Filter } from './components/Filter';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { AppliedFilter } from './components/AppliedFilter';
+import SearchIcon from '@mui/icons-material/Search';
+import IconButton from '@mui/material/IconButton';
 
 const todoss = [
   {
@@ -130,24 +132,57 @@ function App() {
   return (
     <div>
       
-      <Container row className='row justify-content-center'>
+      <Container row >
       <h2 align="center" >Todo List</h2>
         <Row className="justify-content-center">
-          <Col md={6}>
+          <Col md={3}>
             <TodoForm className="todo-form-main" addTodo={addTodo} 
                 deleteTodo={deleteTodo} populateData={populateData} 
                 setPopulateData={setPopulateData} resetFlag={resetFlag}/>
           </Col>
 
           <Col md={6} >
-            <Filter className='row justify-content-center' sendFilter={setFilter} /> 
+            <Filter className='justify-content-center' sendFilter={setFilter} /> 
+          </Col>
+
+          <Col md={3}>
+          <div class="input-group rounded">
+            <input id='search' type="text" class="form-control rounded" 
+                    placeholder="Search title or details" aria-label="Search" 
+                    aria-describedby="search-addon" onChange={ (e)=>{
+                      console.log(e.target.value)
+                      if(e.target.value.trim().length === 0) {
+                        setAlteredFlag(false)
+                        setAlteredTodos([])
+                      } else {
+                        setAlteredFlag(true)
+                      }
+
+                      const searchResult = ()=>{
+                        return todos.filter((x) => {
+                          return ( x.title.toLowerCase().includes(e.target.value) || x.details.toLowerCase().includes(e.target.value))
+                        })
+                      }
+
+                      setAlteredFlag(true)
+                      setAlteredTodos(searchResult())
+                    }}/>
+            <datalist id='search'>{}</datalist>
+
+            {/* <IconButton>< SearchIcon/></IconButton> */}
+
+            {/* <input name="teacher-name" type="text" list="available-teachers" placeholder="Type or select an option" onFocus={handleFieldFocus} onBlur={handleFieldBlur} onChange={handleTeacher}/>
+                                <datalist id="available-teachers">
+                                    {getTeachers()} 
+                                </datalist> */}
+          </div>
           </Col>
         
 
         </Row>
       </Container>
 
-       
+      <br/> 
       <AppliedFilter filter={filter} modifyFilter={setFilter}/>
 
       {!alteredFlag &&   
