@@ -92,8 +92,8 @@ export const Filter = ({sendFilter}) => {
   
   return (
     <>
-      <IconButton onClick={() => setShowFilter(true)}>
-        <FilterAltOutlined fontSize='large' />
+      <IconButton className='justify-content-center' onClick={() => setShowFilter(true)}>
+        <FilterAltOutlined className='justify-content-center' fontSize='large' />
       </IconButton>
 
       <Modal show={showFilter} onHide={() => { 

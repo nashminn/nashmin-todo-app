@@ -18,12 +18,13 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
                         onClick={(e) => {
                             todo.complete = e.target.checked ? 1 : 0
                             setResetFlag(!resetFlag)
+                            editTodo(todo, false)
                         }}
                         checked={todo.complete === 1}
                     />{todo.title}
                 </Col>
                 <Col className="d-flex justify-content-end">
-                    <IconButton aria-label="edit" onClick={() => editTodo(todo)}>
+                    <IconButton aria-label="edit" onClick={() => editTodo(todo, true)}>
                         <EditIcon />
                     </IconButton>
                     <DeleteDialog complete={todo.complete} deleteTodo={deleteTodo} todoId={todo.id} />

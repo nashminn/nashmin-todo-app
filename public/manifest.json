@@ -8,12 +8,12 @@
       "type": "image/x-icon"
     },
     {
-      "src": "todo.png",
+      "src": "./todo.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "todo.png",
+      "src": "./todo.png",
       "type": "image/png",
       "sizes": "512x512"
     }

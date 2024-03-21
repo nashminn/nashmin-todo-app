@@ -67,6 +67,7 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
         created: (new Date()).toISOString(),
       });
     } else {
+
       const updatedTodo = {
         id: populateData.id,
         title: localTitle,

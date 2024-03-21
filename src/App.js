@@ -150,10 +150,22 @@ function App() {
     })
   }
 
-  const editTodo = async (dataToEdit) => {
+  const editTodo = async (dataToEdit, openModal) => {
     // console.log("in app.js datatoedit priority: " +  dataToEdit.priority + "what")
-    setPopulateData(dataToEdit)
-    setResetFlag(!resetFlag)
+    if(openModal) {
+      setPopulateData(dataToEdit)
+      setResetFlag(!resetFlag)
+    } else {
+      const localList = todos.filter((x)=>{
+        return x.id !== dataToEdit.id
+      })
+      setTodos([dataToEdit, ...localList])
+      if(!mockDataUse) {
+        localStorage.setItem('todoList', JSON.stringify(todos))
+      } 
+      
+    }
+    
   }
 
 
@@ -163,17 +175,17 @@ function App() {
       <Container row >
       <h2 align="center" style={{marginTop: '5px'}}>Todo List</h2>
         <Row className="justify-content-center">
-          <Col md={3}>
+          <Col >
             <TodoForm className="todo-form-main" addTodo={addTodo} 
                 deleteTodo={deleteTodo} populateData={populateData} 
                 setPopulateData={setPopulateData} resetFlag={resetFlag}/>
           </Col>
 
-          <Col md={3} >
+          <Col  >
             <Filter className='justify-content-center' sendFilter={setFilter} /> 
           </Col>
 
-          <Col md={3}>
+          <Col >
           <div className="input-group rounded">
             <input id='search' type="text" class="form-control rounded" 
                     placeholder="Search title or details" aria-label="Search" 
@@ -196,16 +208,10 @@ function App() {
                       setAlteredTodos(searchResult())
                     }}/>
             <datalist id='search'>{}</datalist>
-
-            {/* <IconButton>< SearchIcon/></IconButton> */}
-
-            {/* <input name="teacher-name" type="text" list="available-teachers" placeholder="Type or select an option" onFocus={handleFieldFocus} onBlur={handleFieldBlur} onChange={handleTeacher}/>
-                                <datalist id="available-teachers">
-                                    {getTeachers()} 
-                                </datalist> */}
           </div>
           </Col>
-          <Col md={3}>
+          
+          <Col >
             <React.Fragment >
             Mock data: <ReactSwitch checked={mockDataUse} onChange={()=>{
               setMockDataUse(!mockDataUse)
