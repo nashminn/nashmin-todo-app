@@ -90,44 +90,47 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
     <Container>
       <Row className='justify-content-right'>      
 
-      <Modal show={showForm} onHide={() => { 
-          // console.log("ON HIDE TRIGGERED"); 
-          clearData(); setShowForm(false) 
-        }}>
-        <Modal.Header>
-          <Modal.Title>{Object.keys(populateData).length === 0 ? 'Add Todo' : 'Edit Todo'}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form>
-            <div className="mb-3">
-              <label htmlFor="title" className="form-label">Title</label>
-              <input type="text" className="form-control" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="details" className="form-label">Details</label>
-              <input type="text" className="form-control" id="details" name="details" value={details} onChange={(e) => setDetails(e.target.value)} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="priority" className="form-label">Priority</label>
-              <Select fieldName="priority" name="priority" value={priority} defaultValue={priority} onChange={(e) => setPriority(e.target.value)} options={['High', 'Medium', 'Low']} />
-            </div>
-            <div className="mb-3">
-              <label htmlFor="dueDate" className="form-label">Due Date</label>
-              <br />
-              <DatePicker
-                selected={dueDate}
-                onChange={(date) => setDueDate(date.toISOString())}
-                dateFormat="dd/MM/yyyy"
-              />
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={() => {clearData(); setShowForm(false);}}>Close</Button>
-          <Button variant="primary" onClick={onSave}>Save</Button>
-        </Modal.Footer>
-      </Modal>
-      <IconButton className='justify-content-right' onClick={() => setShowForm(true)}><AddCircleOutlineIcon fontSize='large'/></IconButton>
+        <IconButton className='justify-content-right' onClick={() => setShowForm(true)}>
+          <AddCircleOutlineIcon fontSize='large'/>
+        </IconButton>
+        
+        <Modal show={showForm} onHide={() => { 
+            // console.log("ON HIDE TRIGGERED"); 
+            clearData(); setShowForm(false) 
+          }}>
+          <Modal.Header>
+            <Modal.Title>{Object.keys(populateData).length === 0 ? 'Add Todo' : 'Edit Todo'}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form>
+              <div className="mb-3">
+                <label htmlFor="title" className="form-label">Title</label>
+                <input type="text" className="form-control" id="title" name="title" value={title} onChange={(e) => setTitle(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="details" className="form-label">Details</label>
+                <input type="text" className="form-control" id="details" name="details" value={details} onChange={(e) => setDetails(e.target.value)} />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="priority" className="form-label">Priority</label>
+                <Select fieldName="priority" name="priority" value={priority} defaultValue={priority} onChange={(e) => setPriority(e.target.value)} options={['High', 'Medium', 'Low']} />
+              </div>
+              <div className="mb-3">
+                <label htmlFor="dueDate" className="form-label">Due Date</label>
+                <br />
+                <DatePicker
+                  selected={dueDate}
+                  onChange={(date) => setDueDate(date.toISOString())}
+                  dateFormat="dd/MM/yyyy"
+                />
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={() => {clearData(); setShowForm(false);}}>Close</Button>
+            <Button variant="primary" onClick={onSave}>Save</Button>
+          </Modal.Footer>
+        </Modal>
       </Row>
     </Container>
   );

@@ -66,9 +66,12 @@ function App() {
     } else {
       setTodos(MockData())
     }
-
       
   }, [mockDataUse])
+
+  useEffect(() => {
+
+  }, [todos])
 
   useEffect(()=>{
     if(Object.keys(filter).length === 0) {
@@ -137,7 +140,11 @@ function App() {
   const deleteTodo = async (deleteId) => {
     setTodos((todos)=> {
       const left = todos.filter(todo=>todo.id !== deleteId)
-      localStorage.setItem('todoList', JSON.stringify(left))
+      
+      if(mockDataUse === false) {
+        localStorage.setItem('todoList', JSON.stringify(left))
+      }
+  
       return left
     })
   }
@@ -153,7 +160,7 @@ function App() {
     <div>
       
       <Container row >
-      <h2 align="center" >Todo List</h2>
+      <h2 align="center" style={{marginTop: '5px'}}>Todo List</h2>
         <Row className="justify-content-center">
           <Col md={3}>
             <TodoForm className="todo-form-main" addTodo={addTodo} 
@@ -198,7 +205,7 @@ function App() {
           </div>
           </Col>
           <Col md={3}>
-            <React.Fragment style={{marginTop: '1px'}} >
+            <React.Fragment >
             Mock data: <ReactSwitch checked={mockDataUse} onChange={()=>{
               setMockDataUse(!mockDataUse)
             }}/>
