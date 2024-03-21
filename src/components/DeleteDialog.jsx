@@ -21,6 +21,7 @@ export default function DeleteDialog({complete, deleteTodo, todoId}) {
 
   const handleDelete = ()=>{
     deleteTodo(todoId)
+    handleClose()
   }
 
   return (
