@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import useLocalStorage  from 'react-use-localstorage';
 import { TodoList } from './components/TodoList';
 import { TodoForm } from './components/TodoForm';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { uid } from 'uid';
 import { Filter } from './components/Filter';
 import { Button, Col, Container, Row } from 'react-bootstrap';
