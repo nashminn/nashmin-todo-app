@@ -185,7 +185,7 @@ function App() {
             <Filter className='justify-content-center' sendFilter={setFilter} /> 
           </Col>
 
-          <Col >
+          <Col className='d-flex justify-content-center align-items-center' >
           <div className="input-group rounded">
             <input id='search' type="text" class="form-control rounded" 
                     placeholder="Search title or details" aria-label="Search" 
@@ -211,7 +211,7 @@ function App() {
           </div>
           </Col>
           
-          <Col >
+          <Col className='d-flex justify-content-center align-items-center'>
             <React.Fragment >
             Mock data: <ReactSwitch checked={mockDataUse} onChange={()=>{
               setMockDataUse(!mockDataUse)

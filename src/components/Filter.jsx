@@ -91,9 +91,9 @@ export const Filter = ({sendFilter}) => {
   }
   
   return (
-    <>
-      <IconButton className='justify-content-center' onClick={() => setShowFilter(true)}>
-        <FilterAltOutlined className='justify-content-center' fontSize='large' />
+    <div className='d-flex justify-content-center align-items-center'>
+      <IconButton  onClick={() => setShowFilter(true)}>
+        <FilterAltOutlined  fontSize='large' />
       </IconButton>
 
       <Modal show={showFilter} onHide={() => { 
@@ -149,6 +149,6 @@ export const Filter = ({sendFilter}) => {
         </Modal.Footer>
       </Modal>
 
-    </>
+    </div>
   )
 }
