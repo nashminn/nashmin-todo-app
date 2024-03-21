@@ -12,6 +12,8 @@ import { Button, Col, Container, Row } from 'react-bootstrap';
 import { AppliedFilter } from './components/AppliedFilter';
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
+import ReactSwitch from 'react-switch';
+import { MockData } from './MockData';
 
 const todoss = [
   {
@@ -43,16 +45,30 @@ const todoss = [
 function App() {
   // const [todoList, setTodoList] = useLocalStorage('todoList', [])
 
-  const [todos, setTodos] = useState(todoss) 
+  const [todos, setTodos] = useState([]) 
   const [alteredTodos, setAlteredTodos] = useState([])
   const [alteredFlag, setAlteredFlag] = useState(false)
   const [populateData, setPopulateData] = useState({})
   const [resetFlag, setResetFlag] = useState(false)
   const [filter, setFilter] = useState({})
 
-  useEffect(()=>{
+  const [mockDataUse, setMockDataUse] = useState(true)
 
-  }, [resetFlag])
+
+  useEffect(()=>{
+    if(mockDataUse === false) {
+      const stored = localStorage.getItem('todoList')
+      if(stored === null) {
+        setTodos([])
+      } else {
+        setTodos(JSON.parse(stored))
+      }
+    } else {
+      setTodos(MockData())
+    }
+
+      
+  }, [mockDataUse])
 
   useEffect(()=>{
     if(Object.keys(filter).length === 0) {
@@ -112,13 +128,17 @@ function App() {
     setTodos((oldTodos) => {
       const newTodos = [newTodo, ...oldTodos];
       setPopulateData({})
+      localStorage.setItem('todoList', JSON.stringify(newTodos))
       return newTodos; 
     });
+    
   }
 
   const deleteTodo = async (deleteId) => {
     setTodos((todos)=> {
-      return todos.filter(todo=>todo.id !== deleteId)
+      const left = todos.filter(todo=>todo.id !== deleteId)
+      localStorage.setItem('todoList', JSON.stringify(left))
+      return left
     })
   }
 
@@ -141,7 +161,7 @@ function App() {
                 setPopulateData={setPopulateData} resetFlag={resetFlag}/>
           </Col>
 
-          <Col md={6} >
+          <Col md={3} >
             <Filter className='justify-content-center' sendFilter={setFilter} /> 
           </Col>
 
@@ -176,6 +196,13 @@ function App() {
                                     {getTeachers()} 
                                 </datalist> */}
           </div>
+          </Col>
+          <Col md={3}>
+            <React.Fragment style={{marginTop: '1px'}} >
+            Mock data: <ReactSwitch checked={mockDataUse} onChange={()=>{
+              setMockDataUse(!mockDataUse)
+            }}/>
+            </React.Fragment>
           </Col>
         
 

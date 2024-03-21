@@ -4,7 +4,7 @@ import { TodoItem } from './TodoItem'
 import { uid } from 'uid'
 
 export const TodoList = (props) => {
-    const [todoList, setTodoList] =  useState(props.todoList? props.todoList: [])
+    const [todoList, setTodoList] =  useState(props.todoList === null? props.todoList: [])
 
 // sort by title, priority, description, status
 // filter by status, priority, dueDate
