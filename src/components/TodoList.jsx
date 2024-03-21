@@ -6,9 +6,9 @@ import { uid } from 'uid'
 export const TodoList = (props) => {
     const [todoList, setTodoList] =  useState(props.todoList === null? props.todoList: [])
 
-// sort by title, priority, description, status
-// filter by status, priority, dueDate
-// search by title, details
+// sort by title, priority,
+// filter by status, priority, dueDate - ///TODO: due date filter
+// search by title, details - done
 
 
     useEffect(()=>{

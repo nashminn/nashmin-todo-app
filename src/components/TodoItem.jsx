@@ -10,9 +10,9 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
     const [resetFlag, setResetFlag] = useState(false)
 
     return (
-        <Container className={`container-with-visible-border ${todo.complete === 1 ? 'todo-checked' : ''}`}>
+        <Container fluid className={`container-with-visible-border ${todo.complete === 1 ? 'todo-checked' : ''}`}>
             <Row className="align-items-center">
-                <Col xs={1}>
+                <Col >
                     <Checkbox
                         id={todo.id}
                         onClick={(e) => {
@@ -20,10 +20,9 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
                             setResetFlag(!resetFlag)
                         }}
                         checked={todo.complete === 1}
-                    />
+                    />{todo.title}
                 </Col>
-                <Col xs={6}>{todo.title}</Col>
-                <Col xs={5} className="d-flex justify-content-end">
+                <Col className="d-flex justify-content-end">
                     <IconButton aria-label="edit" onClick={() => editTodo(todo)}>
                         <EditIcon />
                     </IconButton>
@@ -31,7 +30,7 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
                 </Col>
             </Row>
 
-            <Row styles={{marginBottom: '10px', marginTop: '10px', marginLeft: '10px' , marginBottom:'15px'}}>
+            <Row styles={{marginBottom: '20px', marginTop: '10px', marginLeft: '100px' , marginBottom:'15px'}}>
                 <Col >{todo.details}</Col>
             </Row>
 

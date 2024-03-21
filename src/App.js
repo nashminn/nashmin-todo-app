@@ -10,8 +10,6 @@ import { uid } from 'uid';
 import { Filter } from './components/Filter';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { AppliedFilter } from './components/AppliedFilter';
-import SearchIcon from '@mui/icons-material/Search';
-import IconButton from '@mui/material/IconButton';
 import ReactSwitch from 'react-switch';
 import { MockData } from './MockData';
 
@@ -131,7 +129,10 @@ function App() {
     setTodos((oldTodos) => {
       const newTodos = [newTodo, ...oldTodos];
       setPopulateData({})
-      localStorage.setItem('todoList', JSON.stringify(newTodos))
+      if(!mockDataUse) {
+        console.log("no use of mock data found")
+        localStorage.setItem('todoList', JSON.stringify(newTodos))
+      }
       return newTodos; 
     });
     
@@ -140,7 +141,7 @@ function App() {
   const deleteTodo = async (deleteId) => {
     setTodos((todos)=> {
       const left = todos.filter(todo=>todo.id !== deleteId)
-      
+
       if(mockDataUse === false) {
         localStorage.setItem('todoList', JSON.stringify(left))
       }
@@ -173,7 +174,7 @@ function App() {
           </Col>
 
           <Col md={3}>
-          <div class="input-group rounded">
+          <div className="input-group rounded">
             <input id='search' type="text" class="form-control rounded" 
                     placeholder="Search title or details" aria-label="Search" 
                     aria-describedby="search-addon" onChange={ (e)=>{
