@@ -64,12 +64,12 @@ function App() {
     } else {
       setTodos(MockData())
     }
-      
+    setResetFlag(!resetFlag) 
   }, [mockDataUse])
 
   useEffect(() => {
-
-  }, [todos])
+    setFilter({})
+  }, [resetFlag])
 
   useEffect(()=>{
     if(Object.keys(filter).length === 0) {
@@ -93,8 +93,8 @@ function App() {
         altList = altList.filter((x)=>{
           return filter.priority.includes(x.priority)
         })
-        console.log("filtered based on priority: ")
-        console.log(altList)
+        // console.log("filtered based on priority: ")
+        // console.log(altList)
       }
 
       if(filter.due !== undefined) {
@@ -118,7 +118,7 @@ function App() {
       }
       
       setAlteredTodos(altList)
-      console.log(altList)
+      // console.log(altList)
       setAlteredFlag(true)
       setResetFlag(!resetFlag)
     }
@@ -130,7 +130,7 @@ function App() {
       const newTodos = [newTodo, ...oldTodos];
       setPopulateData({})
       if(!mockDataUse) {
-        console.log("no use of mock data found")
+        // console.log("no use of mock data found")
         localStorage.setItem('todoList', JSON.stringify(newTodos))
       }
       return newTodos; 
@@ -190,7 +190,7 @@ function App() {
             <input id='search' type="text" class="form-control rounded" 
                     placeholder="Search title or details" aria-label="Search" 
                     aria-describedby="search-addon" onChange={ (e)=>{
-                      console.log(e.target.value)
+                      // console.log(e.target.value)
                       if(e.target.value.trim().length === 0) {
                         setAlteredFlag(false)
                         setAlteredTodos([])
@@ -225,6 +225,7 @@ function App() {
 
       <br/> 
       <AppliedFilter filter={filter} modifyFilter={setFilter}/>
+      <br/>
 
       {!alteredFlag &&   
       <TodoList className="todo-list-main" todoList={todos} 

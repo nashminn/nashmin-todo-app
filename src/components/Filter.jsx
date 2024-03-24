@@ -28,7 +28,7 @@ export const Filter = ({sendFilter}) => {
 
   const populateData = 123;
   const onSave = ()=> {
-    console.log("am i at least in here")
+    // console.log("am i at least in here")
     if( complete !== -1 ) filter.complete = complete
     if( priority.length > 0) filter.priority = priority
     sendFilter(filter)
@@ -116,15 +116,15 @@ export const Filter = ({sendFilter}) => {
 
         <div>
           Priority:<br/>
-          High <Checkbox id='High' onChange={onPriorityCheckboxClick} />
-          Medium <Checkbox id='Medium' onChange={onPriorityCheckboxClick}/>
+          High <Checkbox id='High' onChange={onPriorityCheckboxClick} /><br/>
+          Medium <Checkbox id='Medium' onChange={onPriorityCheckboxClick}/><br/>
           Low <Checkbox id='Low' onChange={onPriorityCheckboxClick}/>
         </div>
 
           Sort by:
           <div>
             Due date: 
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" style={{marginLeft: '5px'}}>
               <RadioGroup  onChange={onDueOrderClick}>
                 <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
                 <FormControlLabel value="descending" control={<Radio />} label="Descending" />
@@ -132,15 +132,15 @@ export const Filter = ({sendFilter}) => {
             </FormControl>
           </div>
           
-          <div>
+          {/* <div>
             Creation date: 
-            <FormControl component="fieldset">
+            <FormControl component="fieldset" style={{marginLeft: '5px'}}>
               <RadioGroup  onChange={onCreatedOrderClick}>
                 <FormControlLabel value="ascending" control={<Radio />} label="Ascending" />
                 <FormControlLabel value="descending" control={<Radio />} label="Descending" />
               </RadioGroup>
             </FormControl>
-          </div>
+          </div> */}
           
         </Modal.Body>
         <Modal.Footer>

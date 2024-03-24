@@ -31,26 +31,14 @@ export const TodoList = (props) => {
         <Grid container direction="row" justifyContent="center">
             {todoList.map((todo)=>{
                 // xs = 4 for 3 cards, xs = 6 for 2 cards
-                return (<Grid item xs={4} style={{marginBottom: '10px'}}>
+                return (<Grid item xs={4} style={{marginBottom: '10px'}} key={todo.id}>
                 <TodoItem todo={todo}
                          deleteTodo={props.deleteTodo} editTodo={props.editTodo}/>
 
                 </Grid>);
             })}
             
-            {/* <Grid item xs={4}>
-                <Content />
-            </Grid>
-            <Grid item xs={4}>
-                <Content />
-            </Grid> */}
-            {/* <Grid item xs={6}>
-                <Content />
-
-            </Grid>
-            <Grid item xs={6}>
-                <Content />
-            </Grid> */}
+            
         </Grid>
     )
 }

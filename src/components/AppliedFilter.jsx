@@ -36,6 +36,7 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
             }
             return acc
         }, {})
+        // console.log(newFilter)
         modifyFilter(newFilter)
     }
 
@@ -44,6 +45,7 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
         if(Object.keys(filter).length === 0) return <></> 
         
         const keys = Object.keys(filter)
+        // console.log(filter)
         
         for(const item of keys) {
             switch(item) {
@@ -57,7 +59,7 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
                     }
                     break;
                 case 'priority':
-                    console.log(filter)
+                    // console.log(filter)
                     filter['priority'].forEach((x)=>{
                         str = [...str, "Priority: " + x]
                     })
@@ -69,14 +71,21 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
                     } else {
                         str = [...str, "Due date: Descending"]
                     }
+                // case 'created':
+                //     console.log("in created")
+                //     if(filter.created === 1) {
+                //         str = [...str, "Creation date: Ascending"]
+                //     } else {
+                //         str = [...str, "Creation date: Descending"]
+                //     }
                 default:
                     break;
             }
             
         }
         const sth = str.map((x) => {
-            return <Chip label={x} onDelete={()=>{
-                console.log("delete button pressed on : " + x)
+            return <Chip label={x} style={{margin: '5px'}} onDelete={()=>{
+                // console.log("delete button pressed on : " + x)
                 switch(x) {
                     case 'Complete':
                         
@@ -101,6 +110,7 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
                     case 'Creation date: Ascending':
                     case 'Creation date: Descending':
                         removeKey('created')
+                        break;
                     default:
                         break;
                 }
