@@ -7,7 +7,7 @@ import { Select } from './Select';
 // import '../css/TodoForm.css'
 import 'react-datepicker/dist/react-datepicker.css';
 import { IconButton } from '@mui/material';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import AddOutlinedIcon from '@mui/icons-material/AddOutlined';
 
 export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopulateData }) => {
   const [showForm, setShowForm] = useState(false);
@@ -91,8 +91,8 @@ export const TodoForm = ({ addTodo, deleteTodo, populateData, resetFlag, setPopu
     <Container>
       <Row className='justify-content-right'>      
 
-        <IconButton className='justify-content-right' onClick={() => setShowForm(true)}>
-          <AddCircleOutlineIcon fontSize='large'/>
+        <IconButton className='justify-content-right' style={{width: '48px', height: '48px'}} onClick={() => setShowForm(true)}>
+          <AddOutlinedIcon fontSize='large'/>
         </IconButton>
         
         <Modal show={showForm} onHide={() => { 

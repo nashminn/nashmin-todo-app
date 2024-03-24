@@ -33,7 +33,7 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
                 </Row>
 
                 <Row styles={{marginTop: '10px', marginLeft: '100px' , marginBottom:'15px'}}>
-                    <Col >{todo.details}</Col>
+                    <Container style={{minHeight: '100px',}}>{todo.details}</Container>
                 </Row>
 
                 {/* <Row>
