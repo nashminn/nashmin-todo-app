@@ -68,7 +68,7 @@ function App() {
   }, [mockDataUse])
 
   useEffect(() => {
-    setFilter({})
+    
   }, [resetFlag])
 
   useEffect(()=>{

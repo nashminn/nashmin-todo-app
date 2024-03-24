@@ -1,5 +1,4 @@
 import EditIcon from '@mui/icons-material/Edit'
-import DeleteIcon from '@mui/icons-material/Delete'
 import { Button, Card, Checkbox, Chip, Grid, IconButton } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -11,7 +10,7 @@ export const TodoItem = ({ deleteTodo, editTodo, todo }) => {
 
 
         return (
-            <Card style={{marginLeft: '10px', marginRight: '10px'}}>
+            <Card style={{marginLeft: '10px', marginRight: '10px', marginTop: '10px', marginBottom: '5px'}} >
             <Container fluid className={`container-with-visible-border ${todo.complete === 1 ? 'todo-checked' : ''}`}>
                 <Row className="align-items-center">
                     <Col >
