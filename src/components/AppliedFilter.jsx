@@ -84,7 +84,7 @@ export const AppliedFilter = ({filter, modifyFilter}) => {
             
         }
         const sth = str.map((x) => {
-            return <Chip label={x} style={{margin: '5px'}} onDelete={()=>{
+            return <Chip label={x} style={{margin: '5px'}} key={x} onDelete={()=>{
                 // console.log("delete button pressed on : " + x)
                 switch(x) {
                     case 'Complete':

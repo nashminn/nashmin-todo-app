@@ -187,7 +187,7 @@ function App() {
 
           <Col className='d-flex justify-content-center align-items-center' >
           <div className="input-group rounded">
-            <input id='search' type="text" class="form-control rounded" 
+            <input id='search' type="text" className="form-control rounded" 
                     placeholder="Search title or details" aria-label="Search" 
                     aria-describedby="search-addon" onChange={ (e)=>{
                       // console.log(e.target.value)
